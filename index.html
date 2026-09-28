@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Grid - O melhor de infraestrutura para o seu negócio</title>
+    <meta name="description" content="Core Grid - O melhor de infraestrutura para o seu negócio ou empresa para pessoas físicas e jurídicas que buscam eficiência e segurança em rede.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- PDF.js da Mozilla para renderização do PDF no Canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+
+    <style>
+        :root {
+            --primary: #111213;
+            --primary-light: #084888;
+            --accent: #e7edee;
+            --accent-light: #ca9819;
+            --accent-dark: #a8882e;
+            --text-light: #0a345e;
+            --text-dark: #61d116;
+            --gray-bg: #b98d14;
+            --card-shadow: 0 8px 32px rgba(218, 209, 209, 0.08);
+        }
+        * { font-family: 'Inter', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; }
+        .gradient-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #0d3b5a 50%, var(--primary-light) 100%);
+        }
+        .accent-border { border-color: var(--accent); }
+        .accent-text { color: var(--accent); }
+        .accent-bg { background-color: var(--accent); }
+        .accent-bg-dark { background-color: var(--accent-dark); }
+        .accent-hover:hover { color: var(--accent-light); }
+        .btn-accent {
+            background-color: var(--accent);
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        .btn-accent:hover {
+            background-color: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(197, 82, 6, 0.35);
+        }
+        .btn-outline {
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+        .btn-outline:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+        .card {
+            background: rgb(124, 178, 174);
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(230, 219, 219, 0.04);
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+        }
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+        }
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.8);
+            margin-top: 0.5rem;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+            margin-top: 12px;
+        }
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--accent);
+            background: rgba(21, 49, 211, 0.1);
+            transition: all 0.3s ease;
+        }
+        .card:hover .service-icon {
+            background: var(--accent);
+            color: rgb(12, 12, 12);
+        }
+        .testimonial-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            border-left: 4px solid var(--accent);
+        }
+        .form-input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(201,168,76,0.15);
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: 0 6px 24px rgba(15, 26, 19, 0.4);
+            transition: all 0.3s ease;
+            z-index: 999;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 10px 36px rgba(37,211,102,0.5);
+        }
+        @media (max-width: 640px) {
+            .section-title { font-size: 1.6rem; }
+            .stat-number { font-size: 2rem; }
+            .hero-title { font-size: 2rem; }
+        }
+        .logo-topo-direito {
+             position: absolute;
+             top: -10px;
+             left: 30px;
+             width: 250px;
+             height: auto;
+             z-index: 1000;
+        }
+
+        /* BARRA DE PROGRESSO SLIDE */
+        #slide-progress-bar {
+            transition: width 0.1s linear;
+        }
+    </style>
+</head>
+<body class="bg-slate-900">
+
+    <!-- ===== HEADER ===== -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <!-- Logo -->
+                <a href="#hero" id="logo-link">
+                    <img src="imagens/figura1.png" alt="Logo Core Grid" class="logo-topo-direito">
+                </a>
+                
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center gap-1" id="desktop-nav" aria-label="Navegação principal"></nav>
+                
+                <!-- Mobile toggle -->
+                <button id="menu-toggle" class="md:hidden text-white text-2xl p-2" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-primary/95 backdrop-blur-lg border-t border-white/10">
+            <nav class="flex flex-col px-4 py-4 gap-1" id="mobile-nav" aria-label="Navegação mobile"></nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- ===== HERO ===== -->
+        <section id="hero" class="gradient-hero min-h-screen flex items-center relative overflow-hidden pt-16">
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute top-20 left-10 w-72 h-72 bg-accent rounded-full blur-3xl"></div>
+                <div class="absolute bottom-20 right-10 w-96 h-96 bg-accent/60 rounded-full blur-3xl"></div>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 w-full">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="text-center lg:text-left">
+                        <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+                            O melhor <span class="accent-text">de infraestrutura em rede para</span> o seu negócio
+                        </h1>
+                        <p class="text-gray-300 text-lg sm:text-xl mt-6 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                            Soluções inteligentes e personalizadas para transformar o melhor de infraestrutura para o seu negócio ou empresa para pessoas físicas e jurídicas que buscam eficiência e segurança em rede.
+                        </p>
+                        <div class="flex flex-wrap gap-4 mt-8 justify-center lg:justify-start">
+                            <a href="#contato" class="btn-accent px-8 py-4 rounded-xl font-semibold text-base inline-flex items-center gap-2">
+                                <i class="fas fa-calendar-check"></i> Agende uma consulta
+                            </a>
+                            <button onclick="abrirModalNexus()" class="bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-slate-900 font-bold px-8 py-4 rounded-xl transition-all shadow-lg flex items-center gap-2">
+                                <i class="fas fa-rocket"></i> Projeto Nexus
+                            </button>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-6 mt-10 justify-center lg:justify-start text-gray-400 text-sm">
+                            <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-accent"></i> CNPJ Ativo</span>
+                            <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-accent"></i> 1 ano de mercado</span>
+                            <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-accent"></i> Atendimento nacional</span>
+                        </div>
+                    </div>
+                    <div class="hidden lg:flex justify-center">
+                        <img src="imagens/figura3.jpeg" alt="Equipe de consultoria em infraestrutura" class="rounded-2xl shadow-2xl object-cover w-full max-w-lg" loading="eager">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SEÇÃO PROJETO NEXUS ===== -->
+        <section id="projeto-nexus" class="py-20 bg-slate-950 text-white border-t border-slate-800">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <span class="text-amber-400 font-semibold text-sm tracking-widest uppercase">Apresentação Exclusiva</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Projeto Nexus Jurídico</h2>
+                    <p class="text-slate-400 mt-3 max-w-2xl mx-auto">Infraestrutura de Rede Corporativa Simplificada e de Baixo Custo para Escritórios de Advocacia.</p>
+                </div>
+
+                <!-- Container do Viewer (PDF + Pitch Video) -->
+                <div id="nexus-viewer-container" class="bg-slate-900 rounded-2xl border border-slate-800 shadow-2xl overflow-hidden min-h-[450px] flex flex-col justify-center items-center relative">
+                    
+                    <!-- Estado Inicial (Bloqueado) -->
+                    <div id="nexus-placeholder" class="p-8 text-center max-w-lg">
+                        <div class="w-20 h-20 bg-amber-500/10 text-amber-500 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Acesso Reservado</h3>
+                        <p class="text-slate-400 mb-6">Preencha seus dados para assistir à apresentação interativa dos slides e ao Pitch oficial do Projeto Nexus.</p>
+                        <button onclick="abrirModalNexus()" class="btn-accent px-8 py-4 rounded-xl font-bold text-slate-950 inline-flex items-center gap-2 shadow-lg">
+                            <i class="fas fa-unlock"></i> Destravar Apresentação
+                        </button>
+                    </div>
+
+                    <!-- Player de PDF / Transição -->
+                    <div id="nexus-pdf-player" class="w-full hidden flex-col items-center bg-black">
+                        <!-- Canvas onde o PDF é desenhado -->
+                        <div class="relative w-full flex justify-center items-center min-h-[400px] max-h-[75vh] overflow-hidden bg-slate-950">
+                            <canvas id="pdf-canvas" class="max-w-full max-h-[75vh] object-contain"></canvas>
+                            <div id="pdf-loading" class="absolute inset-0 bg-slate-950/80 flex flex-col items-center justify-center text-white">
+                                <i class="fas fa-circle-notch fa-spin text-4xl text-amber-500 mb-3"></i>
+                                <span>Carregando slides...</span>
+                            </div>
+                        </div>
+
+                        <!-- Barra de Controle de Transição -->
+                        <div class="w-full bg-slate-900 border-t border-slate-800 p-4 flex flex-wrap items-center justify-between gap-4">
+                            <div class="flex items-center gap-3">
+                                <button id="btn-prev" onclick="mudarSlide(-1)" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition"><i class="fas fa-chevron-left"></i> Anterior</button>
+                                <button id="btn-next" onclick="mudarSlide(1)" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition">Próximo <i class="fas fa-chevron-right"></i></button>
+                                <button id="btn-play-pause" onclick="toggleAutoPlay()" class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold rounded-lg transition flex items-center gap-2">
+                                    <i id="play-icon" class="fas fa-pause"></i> <span id="play-text">Pausar</span>
+                                </button>
+                            </div>
+
+                            <div class="text-slate-300 font-medium text-sm">
+                                Slide <span id="page-num" class="text-amber-400 font-bold">1</span> de <span id="page-count" class="font-bold">--</span>
+                            </div>
+
+                            <button onclick="pularParaPitch()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-amber-400 rounded-lg text-sm font-semibold transition">
+                                Ir Direto ao Pitch <i class="fas fa-forward ml-1"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Barra de Progresso do Tempo do Slide -->
+                        <div class="w-full bg-slate-800 h-1">
+                            <div id="slide-progress-bar" class="bg-amber-500 h-1 w-0"></div>
+                        </div>
+                    </div>
+
+                    <!-- Player de Vídeo (Pitch) -->
+                    <div id="nexus-video-player" class="w-full hidden flex-col items-center bg-black">
+                        <div class="w-full bg-amber-500/10 border-b border-amber-500/20 px-6 py-3 flex items-center justify-between">
+                            <div class="flex items-center gap-2 text-amber-400 font-semibold text-sm">
+                                <i class="fas fa-video"></i>
+                                <span>Pitch Oficial do Projeto Nexus</span>
+                            </div>
+                            <button onclick="reiniciarApresentacao()" class="text-xs text-slate-400 hover:text-white transition">
+                                <i class="fas fa-redo"></i> Rever Slides
+                            </button>
+                        </div>
+                        <video id="pitch-video" class="w-full max-h-[75vh]" controls>
+                            <source src="imagens/Pitch.mp4" type="video/mp4">
+                            Seu navegador não suporta a exibição deste vídeo.
+                        </video>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== STATS ===== -->
+        <section class="bg-primary relative -mt-1">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="stats-grid"></div>
+            </div>
+        </section>
+
+        <!-- ===== SERVIÇOS ===== -->
+        <section id="servicos" class="py-20 bg-gray-bg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-14">
+                    <h1 class="section-title">Nossos Serviços</h1>
+                    <p class="text-white mt-4 max-w-2xl mx-auto text-lg">Pequenas e médias empresas no centro da oportunidade. Atendemos empresas que dependem de arquivos, sistemas e conectividade para operar, mas ainda não contam com uma infraestrutura proporcional ao impacto desses dados.</p>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8" id="services-grid"></div>
+            </div>
+        </section>
+
+        <!-- ===== SOBRE ===== -->
+        <section id="sobre" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-14 items-center">
+                    <div>
+                        <img src="imagens/figura2.jpeg" alt="Sala de reunião da Coregrid" class="rounded-2xl shadow-lg object-cover w-full" loading="lazy">
+                    </div>
+                    <div>
+                        
+                        <h1 class="section-title">Quem Somos</h1>
+                        <p class="text-gray-600 mt-6 text-lg leading-relaxed">
+                            Somos especializados em implantação de redes, organização de ambientes de servidores, segurança perimetral, virtualização e suporte técnico contínuo. A nossa atuação conecta projeto, execução e acompanhamento em uma única frente técnica.
+                        </p>
+                        <p class="text-gray-600 mt-4 text-lg leading-relaxed">
+                            A COREGRID transforma rede corporativa em estabilidade, segurança e continuidade operacional.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== DEPOIMENTOS ===== -->
+        <section id="depoimentos" class="py-20 bg-gray-bg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-14">
+                    
+                    <h2 class="section-title">O que nossos clientes dizem</h2>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="testimonials-grid"></div>
+            </div>
+        </section>
+
+        <!-- ===== CONTATO ===== -->
+        <section id="contato" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-14">
+                    <div>
+                        
+                        <h2 class="section-title">Entre em contato</h2>
+                        <p class="text-gray-600 mt-6 text-lg">Estamos prontos para ajudar você a proteger sua rede e ter a melhor infraestrutura para a sua empresa. Preencha o formulário ou use nossos canais de atendimento.</p>
+                        <div class="mt-10 space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl accent-bg/10 flex items-center justify-center text-accent text-xl flex-shrink-0">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-primary">Telefone</h3>
+                                    <p class="text-gray-600">(21) 96562-9456</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl accent-bg/10 flex items-center justify-center text-accent text-xl flex-shrink-0">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-primary">E-mail</h3>
+                                    <p class="text-gray-600">equipecoregrid@gmail.com.br</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl accent-bg/10 flex items-center justify-center text-accent text-xl flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-primary">Endereço</h3>
+                                    <p class="text-gray-600">Av. Maricá, 1004 — São Gonçalo, RJ</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl accent-bg/10 flex items-center justify-center text-accent text-xl flex-shrink-0">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-primary">WhatsApp</h3>
+                                    <p class="text-gray-600">(21) 96562-9456</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <form id="contact-form" class="bg-gray-bg p-8 rounded-2xl shadow-sm border border-gray-200" novalidate>
+                            <div class="grid sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="nome" class="block text-sm font-medium text-gray-700 mb-1.5">Nome completo</label>
+                                    <input type="text" id="nome" name="nome" class="form-input" placeholder="Seu nome" required>
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">E-mail</label>
+                                    <input type="email" id="email" name="email" class="form-input" placeholder="seu@email.com" required>
+                                </div>
+                                <div>
+                                    <label for="telefone" class="block text-sm font-medium text-gray-700 mb-1.5">Telefone</label>
+                                    <input type="tel" id="telefone" name="telefone" class="form-input" placeholder="(21) 99999-9999">
+                                </div>
+                                <div>
+                                    <label for="assunto" class="block text-sm font-medium text-gray-700 mb-1.5">Assunto</label>
+                                    <select id="assunto" name="assunto" class="form-input" required>
+                                        <option value="">Selecione</option>
+                                        <option value="Consulta para Orçamento">Consulta para Orçamento</option>
+                                        <option value="Estrutura Física">Estrutura Física</option>
+                                        <option value="Estrutura remota">Estrutura Remota</option>
+                                        <option value="Consultoria Empresarial">Consultoria Empresarial</option>
+                                        <option value="Manutenções ou reparo">Manutenções ou Reparo</option>
+                                        <option value="Outro">Outro</option>
+                                    </select>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label for="mensagem" class="block text-sm font-medium text-gray-700 mb-1.5">Mensagem</label>
+                                    <textarea id="mensagem" name="mensagem" rows="4" class="form-input" placeholder="Conte-nos sobre sua necessidade..." required></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-accent w-full mt-6 px-6 py-4 rounded-xl font-semibold text-base flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp"></i> Enviar mensagem via WhatsApp
+                            </button>
+                            <p id="form-feedback" class="text-center mt-4 text-sm hidden"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-primary text-gray-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div>
+                    <div class="flex items-center gap-2 text-white font-bold text-xl mb-4">
+                        <span class="w-9 h-9 rounded-lg accent-bg flex items-center justify-center text-primary font-extrabold text-lg">C</span>
+                        <span>CoreGrid</span>
+                    </div>
+                    <p class="text-sm leading-relaxed">Soluções inteligentes em infraestrutura e redes corporativas. Atendimento de alta performance para o seu negócio.</p>
+                    <div class="flex gap-3 mt-5">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-primary transition-all" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-primary transition-all" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-primary transition-all" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold text-lg mb-4">Serviços</h3>
+                    <ul class="space-y-2.5 text-sm" id="footer-services"></ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold text-lg mb-4">Links</h3>
+                    <ul class="space-y-2.5 text-sm" id="footer-links"></ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold text-lg mb-4">Newsletter</h3>
+                    <p class="text-sm mb-4">Receba dicas de infraestrutura e novidades técnicas.</p>
+                    <form id="newsletter-form" class="flex gap-2">
+                        <input type="email" placeholder="seu@email.com" class="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 text-sm focus:outline-none focus:border-accent" required>
+                        <button type="submit" class="accent-bg text-primary px-4 rounded-lg font-semibold hover:bg-accent-dark transition"><i class="fas fa-arrow-right"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-sm">
+                <p>&copy; 2026 CoreGrid Infraestrutura. Todos os direitos reservados.</p>
+                <p>CNPJ: 25.020.917/0001-24</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5521986563988" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Fale conosco pelo WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ===== MODAL POPUP - PROJETO NEXUS ===== -->
+    <div id="modal-nexus" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative">
+            <button onclick="fecharModalNexus()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 bg-amber-500/10 text-amber-500 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white">Projeto Nexus</h3>
+                <p class="text-slate-400 text-sm mt-1">Preencha seus dados para acessar a apresentação interativa em PDF e o Pitch do projeto.</p>
+            </div>
+
+            <form id="nexus-form" onsubmit="confirmarAcessoNexus(event)" class="space-y-4">
+                <div>
+                    <label for="nexus-nome" class="block text-xs font-semibold text-slate-300 uppercase mb-1">Nome Completo *</label>
+                    <input type="text" id="nexus-nome" required placeholder="Digite seu nome completo" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label for="nexus-zap" class="block text-xs font-semibold text-slate-300 uppercase mb-1">WhatsApp *</label>
+                    <input type="tel" id="nexus-zap" required placeholder="(21) 99999-9999" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
+                </div>
+                <div id="nexus-error" class="text-red-400 text-xs text-center hidden">
+                    Por favor, preencha todos os campos corretamente.
+                </div>
+                <button type="submit" class="w-full py-4 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-slate-950 font-bold rounded-xl transition shadow-lg flex items-center justify-center gap-2">
+                    <span>Acessar Apresentação</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // ===== DATA LAYER =====
+
+        const navItems = [
+            { label: "Início", href: "#hero" },
+            { label: "Projeto Nexus", href: "#projeto-nexus", special: true }, // <--- Opção Adicionada
+            { label: "Serviços", href: "#servicos" },
+            { label: "Sobre", href: "#sobre" },
+            { label: "Depoimentos", href: "#depoimentos" },
+            { label: "Contato", href: "#contato" },
+            { label: "FAQ", href: "faq.html" }
+        ];
+
+        const stats = [
+            { number: "1+", label: "Ano de mercado" },
+            { number: "50+", label: "Clientes atendidos" },
+            { number: "99.8%", label: "Satisfação" },
+            { number: "1", label: "Unidade" }
+        ];
+
+        const services = [
+            {
+                icon: "fa-chart-line",
+                title: "Planejamento de Infraestrutura",
+                desc: "Arquivos críticos: Documentos, propostas, planilhas e dados da operação precisam de organização, acesso correto e continuidade."
+            },
+            {
+                icon: "fa-shield-alt",
+                title: "Segurança para a sua empresa",
+                desc: "Consolidar equipe para cabeamento, servidores e segurança. Transformar projetos em manutenção e monitoramento contínuo."
+            },
+            {
+                icon: "fa-network-wired",
+                title: "Consultoria Empresarial em TI",
+                desc: "Profissionalizamos a rede que sustenta a sua operação. Implantação de infraestrutura, segurança, organização de arquivos e suporte."
+            },
+            {
+                icon: "fa-user-shield",
+                title: "Proteção de Dados (LGPD)",
+                desc: "Análise e implementação das melhores soluções de segurança perimetral para os dados vitais da sua empresa e clientes."
+            },
+            {
+                icon: "fa-server",
+                title: "Servidores e Virtualização",
+                desc: "Estruturação de servidores, virtualização de ambientes e políticas de backup automatizado contra perdas e ataques."
+            },
+            {
+                icon: "fa-headset",
+                title: "Suporte Técnico Especializado",
+                desc: "Treinamento, monitoramento 24/7 e suporte contínuo para garantir total disponibilidade operacional do seu negócio."
+            }
+        ];
+
+        const testimonials = [
+            {
+                name: "Ana Carolina Mendes",
+                role: "Empresária",
+                text: "A estabilidade que precisávamos no caixa. Desde que refizeram nosso cabeamento estruturado e a rede Wi-Fi das lojas, nunca mais sofremos com quedas nos terminais de venda. Suporte ágil e atencioso.",
+                avatar: "https://picsum.photos/100/100?random=10"
+            },
+            {
+                name: "Roberto Almeida",
+                role: "Gestor de Operações",
+                text: "Instalaram uma rede corporativa altamente segura para nosso prontuário eletrônico e um Wi-Fi isolado e rápido para os pacientes na recepção. Projeto entregue no prazo e dentro do orçamento.",
+                avatar: "https://picsum.photos/100/100?random=11"
+            },
+            {
+                name: "Juliana Santos",
+                role: "Diretora de Tecnologia",
+                text: "Em épocas de fechamento fiscal, nossa rede não pode parar. A equipe estruturou nossos servidores, firewall e link redundante. Hoje trabalhamos com total estabilidade e proteção de dados.",
+                avatar: "https://picsum.photos/100/100?random=12"
+            }
+        ];
+
+        const footerServices = [
+            "Planejamento de Infraestrutura",
+            "Segurança de Redes",
+            "Consultoria Empresarial",
+            "Proteção de Dados",
+            "Virtualização e Servidores",
+            "Suporte Técnico Contínuo"
+        ];
+
+        const footerLinkItems = [
+            { label: "Início", href: "#hero" },
+            { label: "Projeto Nexus", href: "#projeto-nexus" },
+            { label: "Serviços", href: "#servicos" },
+            { label: "Sobre", href: "#sobre" },
+            { label: "Depoimentos", href: "#depoimentos" },
+            { label: "Contato", href: "#contato" },
+            { label: "Política de Privacidade", href: "#" }
+        ];
+
+        // ===== RENDER FUNCTIONS =====
+
+        function renderNav(items) {
+            return items.map(i => {
+                if (i.special) {
+                    return `<a href="${i.href}" onclick="interceptarClickNexus(event)" class="nav-link px-4 py-2 rounded-lg text-sm font-bold text-amber-400 bg-amber-500/10 border border-amber-500/20 hover:bg-amber-500/20 transition-all">${i.label}</a>`;
+                }
+                return `<a href="${i.href}" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all">${i.label}</a>`;
+            }).join("");
+        }
+
+        function renderMobileNav(items) {
+            return items.map(i => {
+                if (i.special) {
+                    return `<a href="${i.href}" onclick="interceptarClickNexus(event)" class="nav-link px-4 py-3 rounded-lg text-base font-bold text-amber-400 bg-amber-500/10 hover:bg-amber-500/20 transition-all">${i.label}</a>`;
+                }
+                return `<a href="${i.href}" class="nav-link px-4 py-3 rounded-lg text-base font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all">${i.label}</a>`;
+            }).join("");
+        }
+
+        function renderStats(items) {
+            return items.map(s => 
+                `<div class="stat-item">
+                    <div class="stat-number">${s.number}</div>
+                    <div class="stat-label">${s.label}</div>
+                </div>`
+            ).join("");
+        }
+
+        function renderServices(items) {
+            return items.map(s => 
+                `<article class="card p-8">
+                    <div class="service-icon mb-5">
+                        <i class="fas ${s.icon}"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">${s.title}</h3>
+                    <p class="text-gray-600 leading-relaxed">${s.desc}</p>
+                </article>`
+            ).join("");
+        }
+
+        function renderTestimonials(items) {
+            return items.map(t => 
+                `<div class="testimonial-card">
+                    <div class="flex items-center gap-4 mb-4">
+                        <img src="${t.avatar}" alt="Foto de ${t.name}" class="w-14 h-14 rounded-full object-cover" loading="lazy">
+                        <div>
+                            <h4 class="font-bold text-primary">${t.name}</h4>
+                            <span class="text-sm text-gray-500">${t.role}</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed italic">"${t.text}"</p>
+                    <div class="flex gap-1 mt-4 text-accent text-sm">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>`
+            ).join("");
+        }
+
+        function renderFooterServices(items) {
+            return items.map(s => `<li><a href="#servicos" class="nav-link hover:text-accent transition-colors">${s}</a></li>`).join("");
+        }
+
+        function renderFooterLinks(items) {
+            return items.map(l => `<li><a href="${l.href}" class="nav-link hover:text-accent transition-colors">${l.label}</a></li>`).join("");
+        }
+
+        // ===== MOUNT =====
+
+        document.getElementById("desktop-nav").innerHTML = renderNav(navItems);
+        document.getElementById("mobile-nav").innerHTML = renderMobileNav(navItems);
+        document.getElementById("stats-grid").innerHTML = renderStats(stats);
+        document.getElementById("services-grid").innerHTML = renderServices(services);
+        document.getElementById("testimonials-grid").innerHTML = renderTestimonials(testimonials);
+        document.getElementById("footer-services").innerHTML = renderFooterServices(footerServices);
+        document.getElementById("footer-links").innerHTML = renderFooterLinks(footerLinkItems);
+
+        // ===== EVENT DELEGATION =====
+
+        document.addEventListener("click", function(e) {
+            const link = e.target.closest("a.nav-link[href^='#']");
+            if (link && !link.getAttribute('onclick')) {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute("href"));
+                if (target) {
+                    target.scrollIntoView({ behavior: "smooth" });
+                }
+                const mobileMenu = document.getElementById("mobile-menu");
+                if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+                    mobileMenu.classList.add("hidden");
+                }
+            }
+
+            const logoLink = e.target.closest("#logo-link");
+            if (logoLink) {
+                e.preventDefault();
+                document.getElementById("hero").scrollIntoView({ behavior: "smooth" });
+            }
+        });
+
+        // ===== HEADER SCROLL EFFECT =====
+
+        const header = document.getElementById("header");
+        window.addEventListener("scroll", function() {
+            if (window.pageYOffset > 80) {
+                header.classList.add("bg-primary/95", "backdrop-blur-lg", "shadow-lg");
+                header.classList.remove("bg-transparent");
+            } else {
+                header.classList.remove("bg-primary/95", "backdrop-blur-lg", "shadow-lg");
+                header.classList.add("bg-transparent");
+            }
+        });
+
+        // ===== MOBILE MENU TOGGLE =====
+
+        document.getElementById("menu-toggle").addEventListener("click", function() {
+            const menu = document.getElementById("mobile-menu");
+            menu.classList.toggle("hidden");
+            const icon = this.querySelector("i");
+            if (icon.classList.contains("fa-bars")) {
+                icon.classList.replace("fa-bars", "fa-times");
+            } else {
+                icon.classList.replace("fa-times", "fa-bars");
+            }
+        });
+
+        // ===== CONTACT FORM INTEGRATION WITH WHATSAPP =====
+
+        document.getElementById("contact-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            
+            const feedback = document.getElementById("form-feedback");
+            feedback.classList.remove("hidden", "text-red-500", "text-green-500");
+            feedback.textContent = "";
+
+            const nome = document.getElementById("nome").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const telefone = document.getElementById("telefone").value.trim() || "Não informado";
+            const assunto = document.getElementById("assunto").value;
+            const mensagem = document.getElementById("mensagem").value.trim();
+
+            if (!nome || !email || !assunto || !mensagem) {
+                feedback.textContent = "Por favor, preencha todos os campos obrigatórios.";
+                feedback.classList.add("text-red-500");
+                feedback.classList.remove("hidden");
+                return;
+            }
+
+            if (!email.includes("@") || !email.includes(".")) {
+                feedback.textContent = "Por favor, insira um e-mail válido.";
+                feedback.classList.add("text-red-500");
+                feedback.classList.remove("hidden");
+                return;
+            }
+
+            const numeroWhatsapp = "5521965629456";
+            
+            const mensagemFormatada = `*NOVO CONTATO DE SUPORTE - COREGRID*\n\n` +
+                `*Nome:* ${nome}\n` +
+                `*E-mail:* ${email}\n` +
+                `*Telefone:* ${telefone}\n` +
+                `*Assunto:* ${assunto}\n\n` +
+                `*Mensagem:* ${mensagem}`;
+
+            const urlWhatsapp = `https://api.whatsapp.com/send?phone=${numeroWhatsapp}&text=${encodeURIComponent(mensagemFormatada)}`;
+
+            feedback.textContent = "Redirecionando para o WhatsApp do suporte...";
+            feedback.classList.add("text-green-500");
+            feedback.classList.remove("hidden");
+
+            setTimeout(() => {
+                window.open(urlWhatsapp, '_blank');
+                this.reset();
+            }, 800);
+        });
+
+        // ===== NEWSLETTER FORM =====
+
+        document.getElementById("newsletter-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const input = this.querySelector("input[type='email']");
+            if (input.value.trim() && input.value.includes("@")) {
+                alert("Obrigado por se inscrever! Você receberá nossas novidades em breve.");
+                input.value = "";
+            } else {
+                alert("Por favor, insira um e-mail válido.");
+            }
+        });
+
+        // ===== LÓGICA DO PROJETO NEXUS (POPUP, SLIDES PDF E PITCH) =====
+
+        let nexusLiberado = false;
+        let pdfDoc = null;
+        let pageNum = 1;
+        let isRendering = false;
+        let pageNumPending = null;
+        let slideTimer = null;
+        let progressInterval = null;
+        let isPlaying = true;
+        const slideDuration = 6000; // 6 segundos por tela/slide
+        let slideProgress = 0;
+
+        function interceptarClickNexus(e) {
+            e.preventDefault();
+            const target = document.querySelector("#projeto-nexus");
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth" });
+            }
+            if (!nexusLiberado) {
+                abrirModalNexus();
+            }
+        }
+
+        function abrirModalNexus() {
+            document.getElementById("modal-nexus").classList.remove("hidden");
+        }
+
+        function fecharModalNexus() {
+            document.getElementById("modal-nexus").classList.add("hidden");
+        }
+
+        function mascararTelefone(input) {
+            let v = input.value.replace(/\D/g, "");
+            if (v.length > 11) v = v.substring(0, 11);
+            if (v.length > 10) {
+                v = v.replace(/^(\d\d)(\d{5})(\d{4})$/, "($1) $2-$3");
+            } else if (v.length > 5) {
+                v = v.replace(/^(\d\d)(\d{4})(\d{0,4})$/, "($1) $2-$3");
+            } else if (v.length > 2) {
+                v = v.replace(/^(\d\d)(\d{0,5})$/, "($1) $2");
+            } else {
+                v = v.replace(/^(\d*)$/, "($1");
+            }
+            input.value = v;
+        }
+
+        document.getElementById("nexus-zap").addEventListener("input", function() {
+            mascararTelefone(this);
+        });
+
+      function confirmarAcessoNexus(e) {
+           e.preventDefault();
+           const nome = document.getElementById("nexus-nome").value.trim();
+           const whatsapp = document.getElementById("nexus-zap").value.trim();
+           const errorElement = document.getElementById("nexus-error");
+
+        if (!nome || whatsapp.length < 14) { // Validação simples de telefone
+            errorElement.classList.remove("hidden");
+            return;
+          }
+
+           errorElement.classList.add("hidden");
+           nexusLiberado = true;
+           fecharModalNexus();
+
+           // 1. Envia a mensagem de agradecimento sempre para o número (21) 98656-3988
+           enviarAgradecimentoWhatsapp(nome, "5521986563988");
+
+           // 2. Disponibilizar a Apresentação e o Pitch
+          iniciarApresentacaoNexus();
+           }
+
+        function enviarAgradecimentoWhatsapp(nome, zapUsuario) {
+            // Limpa o número para envio
+            let numLimpo = zapUsuario.replace(/\D/g, "");
+            if (!numLimpo.startsWith("55")) {
+                numLimpo = "55" + numLimpo;
+            }
+
+            const mensagemAgradecimento = `Olá me chamo ${nome}! 👋\n\nMostrei interesse no *Projeto Nexus - CoreGrid*.\n\nOlá, equipe CoreGrid! Tudo bem? A apresentação interativa foi liberada na página. Agradeço pelo conhecimento que me foi agregado, caso precise tirar alguma duvida entrarei em contato! `;
+
+            const url = `https://api.whatsapp.com/send?phone=${numLimpo}&text=${encodeURIComponent(mensagemAgradecimento)}`;
+
+            // Dispara abertura do WhatsApp em aba separada
+            window.open(url, "_blank");
+        }
+
+        function iniciarApresentacaoNexus() {
+            document.getElementById("nexus-placeholder").classList.add("hidden");
+            document.getElementById("nexus-pdf-player").classList.remove("hidden");
+            document.getElementById("nexus-pdf-player").classList.add("flex");
+
+            // Carrega o PDF do Projeto Nexus
+            pdfjsLib.getDocument('apresentacao.pdf').promise.then(doc => {
+                pdfDoc = doc;
+                document.getElementById("page-count").textContent = pdfDoc.numPages;
+                document.getElementById("pdf-loading").classList.add("hidden");
+                pageNum = 1;
+                renderPage(pageNum);
+                iniciarTimerSlide();
+            }).catch(err => {
+                console.error("Erro ao carregar PDF:", err);
+                document.getElementById("pdf-loading").innerHTML = `<span class="text-red-400 p-4">Erro ao carregar apresentação em PDF. Por favor, verifique o arquivo.</span>`;
+            });
+        }
+
+        function renderPage(num) {
+            isRendering = true;
+            pdfDoc.getPage(num).then(page => {
+                const canvas = document.getElementById("pdf-canvas");
+                const ctx = canvas.getContext("2d");
+
+                const viewport = page.getViewport({ scale: 1.5 });
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                const renderContext = {
+                    canvasContext: ctx,
+                    viewport: viewport
+                };
+
+                const renderTask = page.render(renderContext);
+                renderTask.promise.then(() => {
+                    isRendering = false;
+                    if (pageNumPending !== null) {
+                        renderPage(pageNumPending);
+                        pageNumPending = null;
+                    }
+                });
+            });
+
+            document.getElementById("page-num").textContent = num;
+        }
+
+        function queueRenderPage(num) {
+            if (isRendering) {
+                pageNumPending = num;
+            } else {
+                renderPage(num);
+            }
+        }
+
+        function mudarSlide(delta) {
+            resetTimerSlide();
+            if (!pdfDoc) return;
+            
+            let novaPagina = pageNum + delta;
+            if (novaPagina > pdfDoc.numPages) {
+                // Chegou ao fim da apresentação de PDF -> Inicia o Pitch (Vídeo)
+                iniciarPitchVideo();
+                return;
+            } else if (novaPagina < 1) {
+                novaPagina = 1;
+            }
+
+            pageNum = novaPagina;
+            queueRenderPage(pageNum);
+        }
+
+        function iniciarTimerSlide() {
+            if (!isPlaying) return;
+            slideProgress = 0;
+            clearInterval(progressInterval);
+            
+            const progressBar = document.getElementById("slide-progress-bar");
+            const updateInterval = 50;
+
+            progressInterval = setInterval(() => {
+                slideProgress += updateInterval;
+                const pct = Math.min((slideProgress / slideDuration) * 100, 100);
+                if (progressBar) progressBar.style.width = pct + "%";
+
+                if (slideProgress >= slideDuration) {
+                    clearInterval(progressInterval);
+                    mudarSlide(1);
+                }
+            }, updateInterval);
+        }
+
+        function resetTimerSlide() {
+            clearInterval(progressInterval);
+            const progressBar = document.getElementById("slide-progress-bar");
+            if (progressBar) progressBar.style.width = "0%";
+            if (isPlaying) {
+                iniciarTimerSlide();
+            }
+        }
+
+        function toggleAutoPlay() {
+            isPlaying = !isPlaying;
+            const icon = document.getElementById("play-icon");
+            const text = document.getElementById("play-text");
+
+            if (isPlaying) {
+                icon.className = "fas fa-pause";
+                text.textContent = "Pausar";
+                iniciarTimerSlide();
+            } else {
+                icon.className = "fas fa-play";
+                text.textContent = "Continuar";
+                clearInterval(progressInterval);
+            }
+        }
+
+        function pularParaPitch() {
+            clearInterval(progressInterval);
+            iniciarPitchVideo();
+        }
+
+        function iniciarPitchVideo() {
+            clearInterval(progressInterval);
+            document.getElementById("nexus-pdf-player").classList.add("hidden");
+            document.getElementById("nexus-pdf-player").classList.remove("flex");
+
+            const videoContainer = document.getElementById("nexus-video-player");
+            videoContainer.classList.remove("hidden");
+            videoContainer.classList.add("flex");
+
+            const video = document.getElementById("pitch-video");
+            if (video) {
+                video.play().catch(e => console.log("Autoplay bloqueado pelo navegador, aguardando clique do usuário."));
+            }
+        }
+
+        function reiniciarApresentacao() {
+            const video = document.getElementById("pitch-video");
+            if (video) {
+                video.pause();
+                video.currentTime = 0;
+            }
+
+            document.getElementById("nexus-video-player").classList.add("hidden");
+            document.getElementById("nexus-video-player").classList.remove("flex");
+
+            document.getElementById("nexus-pdf-player").classList.remove("hidden");
+            document.getElementById("nexus-pdf-player").classList.add("flex");
+
+            pageNum = 1;
+            isPlaying = true;
+            document.getElementById("play-icon").className = "fas fa-pause";
+            document.getElementById("play-text").textContent = "Pausar";
+            renderPage(pageNum);
+            iniciarTimerSlide();
+        }
+
+        // ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
+
+        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll(".card, .testimonial-card, .stat-item").forEach(el => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(30px)";
+            el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>

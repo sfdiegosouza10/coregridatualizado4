@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ — Componentes Técnicos - Core Grid</title>
+    <meta name="description" content="FAQ e Componentes Técnicos da Infraestrutura de Rede - Core Grid">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0c4b75;
+            --primary-light: #4c6177;
+            --accent: #5e6769;
+            --accent-light: #ca9819;
+            --accent-dark: #a8882e;
+            --text-light: #0a345e;
+            --text-dark: #c4b0b0;
+            --gray-bg: #f8fafc;
+            --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+        }
+        * { font-family: 'Inter', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; background-color: var(--gray-bg); }
+        .gradient-hero {
+            background: linear-gradient(135deg, #0d3b5a 0%, #084888 100%);
+        }
+        .accent-text { color: var(--accent); }
+        .accent-bg { background-color: var(--accent); }
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+        }
+        .logo-topo-direito {
+             position: absolute;
+             top: -20px;
+             left: 30px;
+             width: 250px;
+             height: auto;
+             z-index: 1000;
+        }
+        .faq-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            background-color: rgba(8, 72, 136, 0.1);
+            color: var(--primary-light);
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER REAPROVEITADO ===== -->
+    <!-- ===== HEADER ===== -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <!-- Logo -->
+                <a href="#hero" id="logo-link">
+                    <img src="imagens/figura1.png" alt="Logo Core Grid" class="logo-topo-direito">
+                </a>
+                
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center gap-1" id="desktop-nav" aria-label="Navegação principal"></nav>
+                
+                <!-- Mobile toggle -->
+                <button id="menu-toggle" class="md:hidden text-white text-2xl p-2" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-primary/95 backdrop-blur-lg border-t border-white/10">
+            <nav class="flex flex-col px-4 py-4 gap-1" id="mobile-nav" aria-label="Navegação mobile"></nav>
+        </div>
+    </header>
+
+    <main class="pt-20 pb-20">
+        <!-- ===== HERO SEÇÃO FAQ ===== -->
+        <section class="gradient-hero text-white py-16 mb-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold">FAQ — Componentes Técnicos</h1>
+                <p class="text-gray-200 mt-4 max-w-2xl mx-auto text-base sm:text-lg">
+                    Conheça em detalhes os componentes essenciais que formam uma infraestrutura de rede corporativa segura, estável e de alta performance.
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== GRID DE CARDS FAQ ===== -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="faq-grid">
+                <!-- Cards carregados via JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-[#0d3b5a] text-gray-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-white/10 text-center text-sm">
+            <p>&copy; 2026 CoreGrid Infraestrutura. Todos os direitos reservados.</p>
+            <p class="mt-1">CNPJ: 25.020.917/0001-24</p>
+        </div>
+    </footer>
+
+    <script>
+        const navItems = [
+            { label: "Início", href: "index.html#hero" },
+            { label: "Serviços", href: "index.html#servicos" },
+            { label: "Sobre", href: "index.html#sobre" },
+            { label: "Depoimentos", href: "index.html#depoimentos" },
+            { label: "Contato", href: "index.html#contato" },
+            { label: "FAQ", href: "faq.html" }
+        ];
+
+        const faqItems = [
+            {
+                id: 1,
+                title: "1. Firewall NGFW (Next-Generation Firewall)",
+                icon: "fa-folder-tree",
+                image: "imagens/firewall-ngfw.jpg",
+                items: [
+                    "<strong>Função principal:</strong> Atua na borda da rede para inspecionar e filtrar todo o tráfego que entra e sai para a internet.",
+                    "<strong>Tecnologia:</strong> Utiliza inspeção profunda de pacotes (DPI) e filtragem de conteúdo na Camada 7 do modelo OSI.",
+                    "<strong>Segurança:</strong> Bloqueia conexões maliciosas, ataques cibernéticos, tentativas de phishing, vírus e malwares.",
+                    "<strong>Controle:</strong> Aplica políticas e regras de restrição de navegação web de acordo com as diretrizes da empresa.",
+                    "<strong>Equipamento:</strong> Solução de segurança perimetral baseada em hardwares de alta performance, como os da Fortinet."
+                ]
+            },
+            {
+                id: 2,
+                title: "2. Windows Server e Active Directory (AD)",
+                icon: "fa-users-gear",
+                image: "imagens/windows-server-ad.jpg",
+                items: [
+                    "<strong>Gestão de Identidades:</strong> Centraliza a administração de usuários, senhas e computadores em um único ponto da rede.",
+                    "<strong>Controle de Acesso:</strong> Aplica o princípio do menor privilégio para liberar pastas e recursos conforme a função do usuário.",
+                    "<strong>Proteção de Dados:</strong> Impede o acesso não autorizado a documentos confidenciais e reduz o risco de vazamentos.",
+                    "<strong>Defesa Cibernética:</strong> Dificulta a movimentação lateral de ameaças e o avanço de ataques dentro do ambiente interno."
+                ]
+            },
+            {
+                id: 3,
+                title: "3. Plataforma de Virtualização (VM)",
+                icon: "fa-cubes",
+                image: "imagens/virtualizacao-vm.jpg",
+                items: [
+                    "<strong>Consolidação de Servidores:</strong> Executa múltiplas máquinas virtuais dentro de um mesmo hardware físico.",
+                    "<strong>Virtualização de Clientes (VDI):</strong> Entrega poder de processamento sob demanda diretamente para as estações de trabalho.",
+                    "<strong>Eficiência de Recursos:</strong> Maximiza o uso dos componentes físicos (CPU e RAM), reduzindo o desperdício.",
+                    "<strong>Escalabilidade:</strong> Permite expandir o ambiente digital rapidamente sem a necessidade imediata de novos hardwares."
+                ]
+            },
+            {
+                id: 4,
+                title: "4. Servidor de Arquivos (File Server)",
+                icon: "fa-folder-tree",
+                image: "imagens/file-server.jpg",
+                items: [
+                    "<strong>Centralização:</strong> Armazena e organiza todos os documentos e dados corporativos em um único repositório.",
+                    "<strong>Taxonomia e Padronização:</strong> Organiza pastas e arquivos sob uma estrutura lógica que otimiza a busca.",
+                    "<strong>Governança:</strong> Controla detalhadamente quais usuários e grupos possuem permissão para visualizar, editar ou excluir.",
+                    "<strong>Suporte a Backups:</strong> Facilita a rotina de cópias de segurança diárias e a rápida recuperação de dados."
+                ]
+            },
+            {
+                id: 5,
+                title: "5. Servidor Físico (Hardware Corporativo)",
+                icon: "fa-server",
+                image: "imagens/servidor-fisico.jpg",
+                items: [
+                    "<strong>Processamento Central:</strong> Equipamento corporativo dedicado a sustentar a plataforma de máquinas virtuais e serviços.",
+                    "<strong>Desempenho:</strong> Elimina gargalos e travamentos causados por hardwares antigos durante rotinas intensas.",
+                    "<strong>Sustentabilidade Tecnológica:</strong> Otimiza o espaço no ambiente, exigindo menos refrigeração e energia."
+                ]
+            },
+            {
+                id: 6,
+                title: "6. Switch Gerenciável",
+                icon: "fa-network-wired",
+                image: "imagens/switch-gerenciavel.jpg",
+                items: [
+                    "<strong>Distribuição de Dados:</strong> Conecta fisicamente o servidor, o firewall e as estações de trabalho da rede.",
+                    "<strong>Gerenciamento de Tráfego:</strong> Permite organizar a rede em segmentos digitais, otimizando o fluxo de dados.",
+                    "<strong>Estabilidade:</strong> Mantém a alta taxa de transferência e a baixa latência necessárias para a comunicação dos computadores."
+                ]
+            },
+            {
+                id: 7,
+                title: "7. Rack Dedicado e Nobreak",
+                icon: "fa-plug",
+                image: "imagens/rack-nobreak.jpg",
+                items: [
+                    "<strong>Proteção Elétrica:</strong> O nobreak protege os equipamentos contra variações na rede elétrica e garante funcionamento contínuo.",
+                    "<strong>Organização Física:</strong> O rack acomoda de forma segura os servidores, switch, firewall e cabeamento estruturado."
+                ]
+            },
+            {
+                id: 8,
+                title: "8. Redes Locais Virtuais (VLANs)",
+                icon: "fa-diagram-project",
+                image: "imagens/vlans-rede.jpg",
+                items: [
+                    "<strong>Isolamento de Tráfego:</strong> Segmenta a rede física em redes lógicas independentes para separar setores corporativos.",
+                    "<strong>Segurança Adicional:</strong> Impede que dispositivos não autorizados acessem o tráfego de dados críticos dos servidores.",
+                    "<strong>Otimização do Tráfego:</strong> Reduz o tráfego desnecessário na rede, melhorando a velocidade de comunicação interna."
+                ]
+            },
+            {
+                id: 9,
+                title: "9. Sistema de Backup Centralizado",
+                icon: "fa-database",
+                image: "imagens/backup-centralizado.jpg",
+                items: [
+                    "<strong>Cópia Continuada:</strong> Automatiza rotinas diárias de cópia de segurança de todos os documentos e servidores.",
+                    "<strong>Recuperação de Desastres:</strong> Permite restaurar rapidamente os sistemas em caso de falha de hardware ou ataque.",
+                    "<strong>Integridade dos Dados:</strong> Garante que dados críticos fiquem protegidos em local seguro fora do ambiente principal."
+                ]
+            },
+            {
+                id: 10,
+                title: "10. Cabeamento Estruturado (Cat6/Cat6a)",
+                icon: "fa-ethernet",
+                image: "imagens/cabeamento-estruturado.jpg",
+                items: [
+                    "<strong>Padronização do Cabeamento:</strong> Organiza toda a conexão física de cabos do ambiente corporativo conforme normas.",
+                    "<strong>Capacidade de Banda:</strong> Garante altíssima taxa de transferência de dados sem interferências externas.",
+                    "<strong>Manutenção Simplificada:</strong> Facilita a identificação rápida de pontos de rede com falha através de identificação."
+                ]
+            },
+            {
+                id: 11,
+                title: "11. Servidor DHCP",
+                icon: "fa-gears",
+                image: "imagens/servidor-dhcp.jpg",
+                items: [
+                    "<strong>Automação de IPs:</strong> Atribui automaticamente endereços de IP e configurações de rede para todos os computadores.",
+                    "<strong>Evita Conflitos:</strong> Impede que dois dispositivos utilizem o mesmo IP, o que causaria quedas na conexão.",
+                    "<strong>Gestão Centralizada:</strong> Facilita o controle de quais dispositivos têm acesso às configurações válidas."
+                ]
+            },
+            {
+                id: 12,
+                title: "12. Servidor DNS Interno",
+                icon: "fa-globe",
+                image: "imagens/servidor-dns.jpg",
+                items: [
+                    "<strong>Resolução de Nomes:</strong> Traduz os endereços IP internos em nomes amigáveis para facilitar o acesso aos servidores.",
+                    "<strong>Velocidade na Navegação:</strong> Acelera as requisições de nomes de domínio armazenando consultas localmente.",
+                    "<strong>Integração de Rede:</strong> Trabalha conectado ao controle de domínio para validar a localização dos serviços."
+                ]
+            },
+            {
+                id: 13,
+                title: "13. Rede Virtual Privada (VPN Corporativa)",
+                icon: "fa-user-lock",
+                image: "imagens/vpn-corporativa.jpg",
+                items: [
+                    "<strong>Acesso Remoto Seguro:</strong> Conecta funcionários em home office ou viagens à rede interna com criptografia total.",
+                    "<strong>Túnel Criptografado:</strong> Protege a comunicação para que não seja interceptada em redes públicas.",
+                    "<strong>Autenticação Rígida:</strong> Exige validação de credenciais e senhas antes de liberar o acesso aos servidores."
+                ]
+            },
+            {
+                id: 14,
+                title: "14. Wi-Fi Corporativo (Access Points)",
+                icon: "fa-wifi",
+                image: "imagens/access-point-wifi.jpg",
+                items: [
+                    "<strong>Conectividade Sem Fio:</strong> Distribui sinal de Wi-Fi de alta velocidade para dispositivos móveis autorizados.",
+                    "<strong>Rede de Visitantes (Guest):</strong> Separa o acesso de visitantes da rede interna de servidores e dados sigilosos.",
+                    "<strong>Roaming Fluido:</strong> Permite movimentar-se pelo escritório sem perder a conexão com a rede sem fio."
+                ]
+            },
+            {
+                id: 15,
+                title: "15. Monitoramento de Rede (SNMP)",
+                icon: "fa-chart-line",
+                image: "imagens/monitoramento-snmp.jpg",
+                items: [
+                    "<strong>Visibilidade em Tempo Real:</strong> Acompanha o consumo de memória, processamento do servidor e uso de banda.",
+                    "<strong>Alertas Preventivos:</strong> Notifica sobre falhas iminentes ou superaquecimento antes que causem interrupções.",
+                    "<strong>Histórico de Desempenho:</strong> Gera relatórios sobre a saúde técnica de todos os componentes da infraestrutura."
+                ]
+            }
+        ];
+
+        // Render Nav
+        document.getElementById("desktop-nav").innerHTML = navItems.map(i => 
+            `<a href="${i.href}" class="px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all">${i.label}</a>`
+        ).join("");
+
+        document.getElementById("mobile-nav").innerHTML = navItems.map(i => 
+            `<a href="${i.href}" class="px-4 py-3 rounded-lg text-base font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all">${i.label}</a>`
+        ).join("");
+
+        // Render FAQ Cards com fallback gracioso para imagens
+        document.getElementById("faq-grid").innerHTML = faqItems.map(item => `
+            <article class="card flex flex-col h-full">
+                <div class="h-44 bg-gradient-to-br from-slate-700 to-slate-900 relative overflow-hidden flex items-center justify-center">
+                    <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover absolute inset-0 z-10" onerror="this.style.opacity='0'">
+                    <div class="z-0 flex flex-col items-center justify-center text-white/80 p-4 text-center">
+                        <i class="fas ${item.icon} text-4xl mb-2 text-amber-400"></i>
+                        <span class="text-xs font-semibold tracking-wider uppercase text-slate-300">${item.title}</span>
+                    </div>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <span class="faq-badge">Componente #0${item.id}</span>
+                        <h2 class="text-lg font-bold text-slate-800 mb-4 leading-snug">${item.title}</h2>
+                        <ul class="space-y-2.5 text-slate-600 text-sm leading-relaxed">
+                            ${item.items.map(bullet => `<li class="flex items-start gap-2"><span class="text-slate-400 mt-1">•</span><span>${bullet}</span></li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            </article>
+        `).join('');
+
+        document.getElementById("menu-toggle").addEventListener("click", function() {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
+        });
+    </script>
+</body>
+</html>
